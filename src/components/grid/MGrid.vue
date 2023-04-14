@@ -1,6 +1,6 @@
 <template>
   <div class="m-main-content-header">
-    <div class="m-main-content-title">{{data.titleForm}}</div>
+    <div class="m-main-content-title">{{getTitle}}</div>
     <div class="m-main-content-btn-add">
       <div @click="onShowForm">
         <MButton>Thêm</MButton>
@@ -112,6 +112,7 @@ import MTable from "../table/MTable.vue";
 import baseApi from "@/api/baseApi";
 import MPopUpWarn from "../pop-up/MPopUpWarn.vue";
 import FolderRoutes from '../folder/FolderRoutes.vue';
+import enumH from "@/assets/js/enum";
 export default {
   name: "MGrid",
   components: {
@@ -233,6 +234,12 @@ export default {
         textSearch: this.textSearch,
         parentId : this.$route.params.id
       };
+    },
+    getTitle(){
+      if(this.$state.form == enumH.formName.productvariant){
+        return localStorage.getItem("parentName") 
+      }
+      return this.data.titleForm ;
     },
     /**
      * Tính tổng số trang

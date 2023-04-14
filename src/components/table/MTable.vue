@@ -35,15 +35,17 @@
             @checkboxSelected="checkboxSelected"
           />
         </MTableColumn>
-        <MTableColumn v-for="(column, index) in columns" :key="index">{{
-          row[column.name]
-        }}</MTableColumn>
+        <MTableColumn v-for="(column, index) in columns" :key="index" :textAlign="column.textAlign" >
+        {{
+          formatColumn(column,row[column.name])
+        }}
+        </MTableColumn>  
         <MTableColumn className="col-fixed-right col-center">
           <div
             class="m__e-table-col-function-btn"
             ref="btnFunctionMenu"
           >
-            <span @click.prevent="actionRow(row[`${tableName}Id`])">{{this.$state.level ? "Thêm" : "Sửa"}}</span>
+            <span @click.prevent="actionRow(row)">{{this.$state.level ? "Thêm" : "Sửa"}}</span>
             <div
               class="m__e-table-col-icon"
               v-click-outside="clickOutSideFunction"
@@ -96,6 +98,7 @@
   </MPopUpWarn>
 </template>
 <script>
+import common from "@/assets/js/common";
 import MButton from "../button/MButton.vue";
 import MCheckBox from "../checkbox/MCheckBox.vue";
 import MPopUpWarn from "../pop-up/MPopUpWarn.vue";
@@ -244,12 +247,19 @@ export default {
       this.$state.idModel = id;
       this.$state.isShowForm = true;
     },
-    actionRow(id){
+    actionRow(row){
       if(this.$state.form == enumH.formName.product){
-        this.$router.push("/products/"+id);
+        localStorage.setItem("parentName",row?.ProductName);
+        this.$router.push("/products/"+row.ProductId);
       }else{
-        this.updateRows(id);
+        this.updateRows(row[`${this.$state.tableName}Id`]);
       }
+    },
+    formatColumn(column,value){
+      if(column.type == 'date'){
+        return common.formatDate(value);
+      }
+      return value;
     }
   },
   watch:{

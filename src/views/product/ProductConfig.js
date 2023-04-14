@@ -21,17 +21,10 @@ class productConfig {
                 width : 150,
             },
             {
-                name : "Image",
-                title : "Ảnh minh họa",
-                textAlign : "center",
-                type : "image",
-                width : 150,
-            },
-            {
                 name : "Sold",
                 title : "Đã bán",
                 textAlign : "right",
-                type : "number",
+                type   : "number",
                 width : 150,
             },
             {
@@ -59,7 +52,7 @@ class productConfig {
                 name : "PublicDate",
                 title : "Ngày ra mắt",
                 textAlign : "center",
-                type : "image",
+                type : "date",
                 width : 150,
             },
             {
