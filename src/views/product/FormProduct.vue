@@ -40,17 +40,36 @@
         @message-error-input="handleBindMessageInput"
       />
       <div class="form__col" style="width: 100%">
-        <MInput
+        <div class="form__row" style="width: 100%">
+        <div class="form__row f-bw" style="width: 48%">
+          <MInput
+          textField="Giá bán"
+          v-model="formData.PriceSale"
+          :required="true"
+          ref="PriceSale"
+          name="PriceSale"
+          :tabIndex="3"
+          dis
+          :errorMsg="errorMsgObject?.PriceSale"
+          :rules="[rules.NOT_EMPTY]"
+          @message-error-input="handleBindMessageInput"
+        />
+        />
+        </div>
+        <div class="form__row f-bw" style="width: 48%">
+          <MInput
           textField="Giảm giá"
           v-model="formData.Discount"
           :required="true"
           name="Discount"
           ref="Discount"
-          :tabIndex="2"
+          :tabIndex="4"
           :rules="[rules.NOT_EMPTY, `${rules.MAX_LENGTH}|100`]"
           :errorMsg="errorMsgObject?.Discount"
           @message-error-input="handleBindMessageInput"
         />
+        </div>
+        </div>
         <div class="form__row" style="width: 100%">
         <div class="form__row f-bw" style="width: 48%">
           <MCombobox
@@ -63,7 +82,7 @@
             :rules="[rules.NOT_EMPTY]"
             name="BrandId"
             textField="Thương hiệu"
-            :tabIndex="3"
+            :tabIndex="5"
             :required="true"
             :errorMsg="errorMsgObjectInput?.BrandId"
             @message-error-input="handleBindMessageInput"
@@ -81,18 +100,19 @@
               :rules="[rules.NOT_EMPTY]"
               name="TypeId"
               textField="Thể loại"
-              :tabIndex="4"
+              :tabIndex="6"
               :required="true"
               :errorMsg="errorMsgObjectInput?.TypeId"
               @message-error-input="handleBindMessageInput"
             />
           </div>
         </div>
-        <MUpload v-model="formData.Images" />
+        <MUpload v-model="formData.FileModel" :dataImages="formData.Images"/>
         <div class="m-t-20">
           <MTinyMCE v-model="formData.Description" />
         </div>
       </div>
+      <img src="/images/products/8784d5d9-343a-4919-961c-b6bb34d78643_z3963315528673_9d28407358304987898eace155ba3c94.jpg" alt="Mô tả ảnh">
     </div>
   </div>
 </template>

@@ -8,7 +8,7 @@ class productvariantConfig {
         this.parentPath = "/products"
         this.columns = [
             {
-                name : "ProductName",
+                name : "ProductCode",
                 title : "Mã sản phẩm",
                 textAlign : "left",
                 type : "text",
@@ -19,13 +19,6 @@ class productvariantConfig {
                 title : "Số lượng",
                 textAlign : "left",
                 type : "text",
-                width : 150,
-            },
-            {
-                name : "Price",
-                title : "Giá tiền",
-                textAlign : "left",
-                type : "image",
                 width : 150,
             },
             {

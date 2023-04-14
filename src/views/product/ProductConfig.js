@@ -42,6 +42,13 @@ class productConfig {
                 width : 150,
             },
             {
+                name : "PriceSale",
+                title : "Giá bán",
+                textAlign : "center",
+                type : "number",
+                width : 150,
+            },
+            {
                 name : "Discount",
                 title : "% giảm giá",
                 textAlign : "center",
