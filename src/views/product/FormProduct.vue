@@ -47,7 +47,7 @@
         </div>
       </div>
       <img src="/images/products/8784d5d9-343a-4919-961c-b6bb34d78643_z3963315528673_9d28407358304987898eace155ba3c94.jpg"
-        alt="Mô tả ảnh">
+        alt="Mô tả ảnh"> 
     </div>
   </div>
 </template>
