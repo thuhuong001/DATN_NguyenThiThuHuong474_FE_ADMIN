@@ -3,7 +3,7 @@
     <div class="m-main-content-title">{{getTitle}}</div>
     <div class="m-main-content-btn-add">
       <div @click="onShowForm">
-        <MButton>Thêm</MButton>
+        <MButton v-if="$state.mode !== enumH.enumMode.view">Thêm</MButton>
       </div>
       <div
         class="m-main-content-btn-import"
@@ -45,7 +45,6 @@
           @change-input="searchData"
           width="220px"
           marginBottom="0px"
-          v-if="data?.search == false"
         />
         <div
           class="content-table__refesh icon-refesh"
@@ -66,6 +65,7 @@
       @delete="deleteRowTable"
       v-model="rowsSelected"
       :isLoadding="isLoadding"
+      @refresh="refresh()"
     />
     <div class="content-navigation">
       <div class="content-navigation__total">
@@ -144,6 +144,7 @@ export default {
       isShowActionprocessMutiple: false,
       rowsSelected: [],
       isPopUpDelete: false,
+      enumH :enumH
     };
   },
   methods: {

@@ -9,6 +9,11 @@
             :checked="checkedAll"
           />
         </MTableColumn>
+        <MTableColumn tag="th" textAlign="center" width="40px" padding="unset" className="col-fixed-left">
+          STT
+        </MTableColumn>
+        <MTableColumn tag="th" className="col-fixed-left">
+        </MTableColumn>
         <MTableColumn
           tag="th"
           :width="column.width"
@@ -17,7 +22,7 @@
           :key="index"
           >{{ column.title }}</MTableColumn
         >
-        <MTableColumn tag="th" className="col-fixed-right"
+        <MTableColumn tag="th" className="col-fixed-right" v-if="$state.mode !== enumH.enumMode.view"
           >Chức năng</MTableColumn
         >
       </tr>
@@ -25,27 +30,36 @@
         class="m__e-table-row"
         v-for="(row, index) in rows"
         :key="index"
-        :class="{ active: rowsSelected.includes(row) }"
-        @dblclick="updateRows(row[`${tableName}Id`])"
+        :class="{ active: rowsSelected.includes(row)}"
       >
         <MTableColumn className="col-fixed-left">
           <MCheckBox
             :id="row[`${tableName}Id`]"
             :checked="rowsSelected.includes(row[`${tableName}Id`])"
             @checkboxSelected="checkboxSelected"
+            :disabled="!row.IsActive"
           />
         </MTableColumn>
-        <MTableColumn v-for="(column, index) in columns" :key="index" :textAlign="column.textAlign" >
+        <MTableColumn tag="td" textAlign="center">
+          {{index + 1}}
+        </MTableColumn>
+        <MTableColumn tag="td" textAlign="center">
+          <i class="fas fa-lock-open" v-if="row.IsActive || row.IsActive === undefined" @click="lockUpRow(row)"></i>
+          <i class="fas fa-lock" v-else @click="lockUpRow(row)"></i>
+        </MTableColumn>
+        <MTableColumn v-for="(column, index) in columns" :key="index" :textAlign="column.textAlign" 
+        @dblclick="row.IsActive && updateRows(row[`${tableName}Id`])" :className="row.IsActive  == false ? 'locked-row' : ''"
+        >
         {{
           formatColumn(column,row[column.name])
         }}
         </MTableColumn>  
-        <MTableColumn className="col-fixed-right col-center">
+        <MTableColumn className="col-fixed-right col-center" v-if="$state.mode !== enumH.enumMode.view" >
           <div
             class="m__e-table-col-function-btn"
             ref="btnFunctionMenu"
           >
-            <span @click.prevent="actionRow(row)">{{this.$state.level ? "Thêm" : "Sửa"}}</span>
+            <span @click.prevent="row.IsActive && actionRow(row)">{{this.$state.level ? "Thêm" : "Sửa"}}</span>
             <div
               class="m__e-table-col-icon"
               v-click-outside="clickOutSideFunction"
@@ -53,7 +67,7 @@
               :class="
                 id === row[`${tableName}Id`] && isShowfunction ? 'active' : ''
               "
-              @click="showFunctionId($event, row[`${tableName}Id`])"
+              @click="row.IsActive && showFunctionId($event, row[`${tableName}Id`])"
             >
               <div class="icon-drop-page-blue"></div>
             </div>
@@ -104,6 +118,7 @@ import MCheckBox from "../checkbox/MCheckBox.vue";
 import MPopUpWarn from "../pop-up/MPopUpWarn.vue";
 import MTableColumn from "../table-column/MTableColumn.vue";
 import enumH from "@/assets/js/enum";
+import baseApi from "@/api/baseApi";
 export default {
   name: "MTable",
   emits:["update:modelValue","delete"],
@@ -131,6 +146,7 @@ export default {
       functionLeft: 0, // Tọa dộ left của list chức năng
       isPopUpDelete : false,
       checkedAll : false,
+      enumH:enumH
     };
   },
   methods: {
@@ -260,6 +276,17 @@ export default {
         return common.formatDate(value);
       }
       return value;
+    },
+    async lockUpRow(row){
+      try {
+        this.$state.isMask();
+        const api = new baseApi(this.$state.tableName);
+        await api.lockup([row[`${this.$state.tableName}Id`]]);
+        this.$state.unMask();
+        this.$emit("refresh");
+      } catch (error) {
+        this.$state.unMask();
+      }
     }
   },
   watch:{
@@ -274,4 +301,7 @@ export default {
 </script>
 
 <style scoped>
+.locked-row{
+  cursor: not-allowed !important ;
+}
 </style>

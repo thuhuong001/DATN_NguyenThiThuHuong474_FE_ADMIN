@@ -39,6 +39,24 @@ const constants = {
       path : "/suppliers",
       name:"Supplier"
     },
+    {
+      text: "Phương thức giao hàng",
+      classIcon: "icon-cash",
+      path : "/shipments",
+      name:"Shipment"
+    },
+    {
+      text: "Khách hàng",
+      classIcon: "icon-cash",
+      path : "/customers",
+      name:"Customer"
+    },
+    {
+      text: "Quản trị viên",
+      classIcon: "icon-cash",
+      path : "/admins",
+      name:"Admin"
+    },
   ],
   /**
    * List item pageSize

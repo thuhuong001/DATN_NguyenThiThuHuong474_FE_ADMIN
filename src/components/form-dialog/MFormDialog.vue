@@ -45,6 +45,16 @@
           :ref="$state.nameTable"
           v-model="model"
         />
+        <FormShipment
+          v-if="$state.form == formNameEnum.shipment"
+          :ref="$state.nameTable"
+          v-model="model"
+        />
+        <FormAdmin
+          v-if="$state.form == formNameEnum.admin"
+          :ref="$state.nameTable"
+          v-model="model"
+        />
       </div>
       <div class="m__e-form-footer-btn">
         <div class="m__e-form-btn__left" @click="destroyForm()">
@@ -95,6 +105,8 @@ import FormProduct from "@/views/product/FormProduct.vue";
 import FormProductVariant from "@/views/productvariant/FormProductVariant.vue";
 import FormType from "@/views/type/FormType.vue";
 import FormSupplier from "@/views/supplier/FormSupplier.vue";
+import FormShipment from "@/views/shipment/FormShipment.vue";
+import FormAdmin from "@/views/admin/FormAdmin.vue";
 export default {
   name: "MFormPopup",
   components: {
@@ -106,6 +118,8 @@ export default {
     FormType,
     FormProductVariant,
     FormSupplier,
+    FormShipment,
+    FormAdmin,
   },
   props: {
     submitForm: String,

@@ -60,7 +60,14 @@ const resources = {
       SupplierCode: "Mã nhà cung cấp",
       SupplierName: "Tên nhà cung cấp",
       TypeCode: "Mã loại sản phẩm",
-      TypeName: "Tên loại sản phẩm"
+      TypeName: "Tên loại sản phẩm",
+      ShipmentCode: "Mã phương thức",
+      Method: "Tên phương thức",
+      DateFrom: "Trường dữ liệu",
+      DateTo: "Trường dữ liệu",
+      PriceShip: "Phí ship",
+      FullName: "Tên",
+      Phone: "Số điện thoại"
     },
     /**
      * Các thông báo toast-msg
@@ -85,14 +92,6 @@ const resources = {
         };
         return message;
       },
-    },
-    /**
-     * Tên file
-     */
-    nameFile: {
-      templateImport: "Mau_danh_muc_nhan_vien.xlsx",
-      fileExport: "Danh_sach_nhan_vien.xlsx",
-      fileImportValidate:"Kết quả kiểm tra.xlsx"  
     },
     /**
      * Trạng thái dòng import

@@ -74,6 +74,16 @@ class baseApi {
       console.log(error);
     }
   };
+  /**
+   * Khóa
+   */
+  lockup = (ids) => {
+    try {
+      return axiosClient.post(this.baseUrl + "Lock-Up", ids);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export default baseApi;
