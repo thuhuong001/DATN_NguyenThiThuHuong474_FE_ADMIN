@@ -181,12 +181,14 @@ export default {
      * Hàm validate form true : không lỗi
      */
     checkValidateFormSubmit() {
+      // eslint-disable-next-line no-debugger
+      debugger
       for (const property in this.$refs[this.$state.nameTable].$refs) {
         this.$refs[this.$state.nameTable].$refs[property]?.checkValidate();
       }
       for (const property in this.$refs[this.$state.nameTable].errorMsgObject) {
         if (this.$refs[this.$state.nameTable].errorMsgObject[property]) {
-          this.$refs[this.$state.nameTable].$refs[property].onFocus();
+          // this.$refs[this.$state.nameTable].$refs[property].onFocus();
           return false;
         }
       }
