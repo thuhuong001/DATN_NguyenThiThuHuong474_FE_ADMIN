@@ -3,6 +3,7 @@ import axios from "axios";
 import queryString from "query-string";
 import state from "../store";
 import enumH from "../assets/js/enum";
+import router from "@/router";
 
 /**
  * Config axios
@@ -16,7 +17,24 @@ const axiosClient = axios.create({
     encode: queryString.parse,
     serialize: (params) => queryString.stringify(params),
   },
+  
 });
+// Xử lý token
+axiosClient.interceptors.request.use(
+  function(config) {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    else{
+      router.push("/auth/signin")
+    }
+    return config;
+  },
+  function(error) {
+    return Promise.reject(error);
+  }
+);
 
 /**
  * Config response

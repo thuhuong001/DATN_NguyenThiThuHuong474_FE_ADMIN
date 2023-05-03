@@ -23,7 +23,7 @@ class supplyConfig {
                 width : 150,
             },
             {
-                name : "SizeCode",
+                name : "SizeNumber",
                 title : "Kích cỡ",
                 textAlign : "left",
                 type : "text",

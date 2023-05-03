@@ -13,14 +13,14 @@ class shipmentConfig {
                 width : 150,
             },
             {
-                name : "Method",
+                name : "ShipmentName",
                 title : "Tên phương thức",
                 textAlign : "left",
                 type : "text",
                 width : 150,
             },
             {
-                name : "DateReceive",
+                name : "DateShip",
                 title : "Thời gian nhận sau khoảng (ngày)",
                 textAlign : "left",
                 type : "text",

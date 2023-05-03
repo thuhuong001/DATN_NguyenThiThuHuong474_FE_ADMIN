@@ -97,7 +97,7 @@
     </div>
   </div>
   <!-- Pop-up thông báo khi xóa -->
-  <MPopUpWarn :isShow="isPopUpDelete" @close-pop-up="isPopUpDelete = false">
+  <MPopUpWarn :isShow="isPopUpDelete" @close-pop-up="isPopUpDelete = false" width="450px">
     {{ `Bạn có thực sự muốn xóa không ?` }}
     <template #footer>
       <div class="warning__delete-btn">

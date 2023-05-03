@@ -22,8 +22,8 @@ class productvariantConfig {
                 width : 150,
             },
             {
-                name : "SizeCode",
-                title : "Kích thước",
+                name : "SizeNumber",
+                title : "Kích cỡ",
                 textAlign : "left",
                 type : "number",
                 width : 150,

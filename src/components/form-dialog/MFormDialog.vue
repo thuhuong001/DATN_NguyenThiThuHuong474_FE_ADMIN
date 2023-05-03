@@ -57,7 +57,7 @@
         />
       </div>
       <div class="m__e-form-footer-btn">
-        <div class="m__e-form-btn__left" @click="destroyForm()">
+        <div class="m__e-form-btn__left">
           <MButton
             typeBtn="close"
             :tabIndex="20"
@@ -239,3 +239,13 @@ export default {
   },
 };
 </script>
+<style scoped>
+.m-pop-up{
+    background-color: white;
+    position: relative;
+    padding: 24px;
+    border-radius: 4px;
+    min-width: 800px;
+    margin-bottom: 20px;
+}
+</style>
