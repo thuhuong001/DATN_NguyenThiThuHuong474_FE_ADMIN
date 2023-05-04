@@ -7,25 +7,25 @@ class customerConfig {
         this.mode  = enumH.enumMode.view;
         this.columns = [
             {
-                name : "CustomerName",
+                name : "FullName",
                 title : "Tên khách hàng",
                 textAlign : "left",
                 type : "text",
-                width : 150,
+                width : 300,
             },
             {
                 name : "Email",
                 title : "Email",
                 textAlign : "left",
                 type : "text",
-                width : 150,
+                width : 300,
             },
             {
                 name : "Phone",
                 title : "Số điện thoại",
                 textAlign : "right",
                 type : "number",
-                width : 150,
+                width : 100,
             },
             {
                 name : "CreatedAt",

@@ -10,13 +10,13 @@ class colorConfig {
                 name : "ColorCode",
                 title : "Mã màu",
                 textAlign : "center",
-                width : 150,
+                width : 100,
             },
             {
                 name :"ColorName",
                 title : "Tên màu",
                 textAlign : "left",
-                width : 150,
+                width : 1000,
             },
         ];
         this.placeholder = "Tìm kiếm theo màu";

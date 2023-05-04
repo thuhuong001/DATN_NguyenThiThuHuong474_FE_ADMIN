@@ -3,7 +3,7 @@
     <div class="m-main-content-title">{{getTitle}}</div>
     <div class="m-main-content-btn-add">
       <div @click="onShowForm">
-        <MButton v-if="$state.mode !== enumH.enumMode.view">Thêm</MButton>
+        <MButton v-if="$state.mode !== enumH.enumMode.view">Thêm mới</MButton>
       </div>
       <div
         class="m-main-content-btn-import"
@@ -95,7 +95,7 @@
             <MButton typeBtn="close">Không</MButton>
           </div>
           <div @click="deleteRowTable(rowsSelected)">
-            <MButton typeBtn="delete">Có</MButton>
+            <MButton typeBtn="delete">Đồng ý</MButton>
           </div>
         </div>
       </template>

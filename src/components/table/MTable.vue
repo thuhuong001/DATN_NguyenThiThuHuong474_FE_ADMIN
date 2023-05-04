@@ -105,7 +105,7 @@
           <MButton typeBtn="close">Không</MButton>
         </div>
         <div @click="deleteRow()">
-          <MButton typeBtn="delete">Có</MButton>
+          <MButton typeBtn="delete">Đồng ý</MButton>
         </div>
       </div>
     </template>
@@ -274,6 +274,9 @@ export default {
     formatColumn(column,value){
       if(column.type == 'date'){
         return common.formatDate(value);
+      }
+      if(column.type == 'price'){
+        return common.formatPrice(value);
       }
       return value;
     },

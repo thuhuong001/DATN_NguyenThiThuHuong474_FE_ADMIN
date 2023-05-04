@@ -11,7 +11,7 @@ class orderConfig {
                 title : "Mã sản phẩm",
                 textAlign : "left",
                 type : "text",
-                width : 150,
+                width : 120,
             },
             {
                 name : "ProductName",

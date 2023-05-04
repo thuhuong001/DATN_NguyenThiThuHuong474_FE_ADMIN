@@ -29,6 +29,10 @@ const common = {
       return "";
     }
   },
+  formatPrice(price){
+    if(!price) return '';
+      return  new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
+  },
   /**
    * Hàm chuyển từ enum giới tính ra tên
    */
