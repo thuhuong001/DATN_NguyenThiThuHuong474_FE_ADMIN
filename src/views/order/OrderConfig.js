@@ -7,11 +7,11 @@ class orderConfig {
         this.level = 1;
         this.columns = [
             {
-                name : "ProductCode",
-                title : "Mã sản phẩm",
+                name : "OrderCode",
+                title : "Mã đơn hàng",
                 textAlign : "left",
                 type : "text",
-                width : 120,
+                width : 150,
             },
             {
                 name : "ProductName",

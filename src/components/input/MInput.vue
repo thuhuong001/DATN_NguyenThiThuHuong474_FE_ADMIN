@@ -89,7 +89,8 @@ export default {
      */
     changeValue(event) {
       this.$emit("update:modelValue", event.target.value);
-        this.$emit("message-error-input",this.name, "");
+      this.$emit("change-input", event);
+      this.$emit("message-error-input",this.name, "");
     },
     /**
      * Check vaidate theo rules truyen vao
