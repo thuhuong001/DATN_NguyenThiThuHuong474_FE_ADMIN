@@ -20,7 +20,7 @@
         <div class="form__row" style="width: 100%">
           <div class="form__row f-bw" style="width: 48%">
             <MInput textField="Giá bán" v-model="formData.PriceSale" :required="true" ref="PriceSale" name="PriceSale"
-              type="price" :tabIndex="3" dis :errorMsg="errorMsgObject?.PriceSale" :rules="[rules.NOT_EMPTY]"
+              type="number" :tabIndex="3" dis :errorMsg="errorMsgObject?.PriceSale" :rules="[rules.NOT_EMPTY]"
               @message-error-input="handleBindMessageInput" />
           </div>
           <div class="form__row f-bw" style="width: 48%">

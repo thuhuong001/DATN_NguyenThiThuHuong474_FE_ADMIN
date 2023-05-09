@@ -22,7 +22,20 @@
     border-right: 1px dotted #bbb;
     
 }
-
+.paid{
+    padding: 2px 4px;
+    border-radius: 4px;
+    width: max-content;
+    color: var(--btn-primary);
+    font-weight: bold;
+}
+.unpaid{
+    padding: 2px 4px;
+    border-radius: 4px;
+    width: max-content;
+    color: rgb(248, 62, 62);
+    font-weight: bold;
+}
 .table-col{
     height: 40px;
     /* text-align: left; */

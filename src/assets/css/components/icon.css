@@ -226,11 +226,7 @@
 	height: 16px;
 }
 /* Export*/
-.icon-export{
-	background: url('../../img/Sprites.64af8f61.svg')no-repeat -1265px -90px;
-	width: 23px;
-	height: 20px;
-}
+
 
 /* date*/
 .icon-date-picker{
@@ -250,7 +246,46 @@
 	width: 97px;
 	height: 75px;
 }
-
+.icon-home{
+	background: url('../../img/Sprites.64af8f61.svg')no-repeat -316px -37px;
+	width: 16px;
+	height: 14px;
+}
+.icon-product{
+	background: url('../../img/Sprites.64af8f61.svg')no-repeat -371px -258px;
+	width: 20px;
+	height: 20px;
+}
+.icon-size{
+	background: url('../../img/Sprites.64af8f61.svg')no-repeat -339px -1590px;
+	width: 18px;
+	height: 17px;
+}
+.icon-supplier {
+	background: url('../../img/Sprites.64af8f61.svg') no-repeat -382px -1589px;
+	width: 17px;
+	height: 18px;
+}
+.icon-customer {
+	background: url('../../img/Sprites.64af8f61.svg') no-repeat -636px -1588px;
+	width: 19px;
+	height: 18px;
+}
+.icon-order {
+	background: url('../../img/Sprites.64af8f61.svg') no-repeat -165px -1589px;
+	width: 16px;
+	height: 18px;
+}
+.icon-supply {
+	background: url('../../img/Sprites.64af8f61.svg') no-repeat -254px -1589px;
+	width: 14px;
+	height: 17px;
+}
+.icon-admin {
+	background: url('../../img/Sprites.64af8f61.svg') no-repeat -165px -1664px;
+	width: 17px;
+	height: 17px;
+}
 /*Tải file template */
 .icon-download-template{
 	background: url('../../img/Sprites.64af8f61.svg')no-repeat -707px -361px;

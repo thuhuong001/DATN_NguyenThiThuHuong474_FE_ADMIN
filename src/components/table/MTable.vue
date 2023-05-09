@@ -2,17 +2,31 @@
   <div class="m__e-fixed-table">
     <table class="m__e-table">
       <tr class="m__e-table-row">
-        <MTableColumn tag="th" className="col-fixed-left" v-if="$state.delete !== enumH.enumDelete.notAllowDelete">
+        <MTableColumn
+          tag="th"
+          className="col-fixed-left"
+          v-if="$state.delete !== enumH.enumDelete.notAllowDelete"
+        >
           <MCheckBox
             id="check-all"
             @checkboxSelected="checkboxSelected"
             :checked="checkedAll"
           />
         </MTableColumn>
-        <MTableColumn tag="th" textAlign="center" width="40px" padding="unset" className="col-fixed-left">
+        <MTableColumn
+          tag="th"
+          textAlign="center"
+          width="40px"
+          padding="unset"
+          className="col-fixed-left"
+        >
           STT
         </MTableColumn>
-        <MTableColumn tag="th" className="col-fixed-left" v-if="$state.lock !== enumH.enumLock.notAllowLock">
+        <MTableColumn
+          tag="th"
+          className="col-fixed-left"
+          v-if="$state.lock !== enumH.enumLock.notAllowLock"
+        >
         </MTableColumn>
         <MTableColumn
           tag="th"
@@ -22,7 +36,10 @@
           :key="index"
           >{{ column.title }}</MTableColumn
         >
-        <MTableColumn tag="th" className="col-fixed-right" v-if="$state.mode !== enumH.enumMode.view"
+        <MTableColumn
+          tag="th"
+          className="col-fixed-right"
+          v-if="isShowColumnAction"
           >Chức năng</MTableColumn
         >
       </tr>
@@ -30,9 +47,12 @@
         class="m__e-table-row"
         v-for="(row, index) in rows"
         :key="index"
-        :class="{ active: rowsSelected.includes(row)}"
+        :class="{ active: rowsSelected.includes(row) }"
       >
-        <MTableColumn className="col-fixed-left" v-if="$state.delete !== enumH.enumDelete.notAllowDelete">
+        <MTableColumn
+          className="col-fixed-left"
+          v-if="$state.delete !== enumH.enumDelete.notAllowDelete"
+        >
           <MCheckBox
             :id="row[`${tableName}Id`]"
             :checked="rowsSelected.includes(row[`${tableName}Id`])"
@@ -41,35 +61,57 @@
           />
         </MTableColumn>
         <MTableColumn tag="td" textAlign="center">
-          {{index + 1}}
+          {{ index + 1 }}
         </MTableColumn>
-        <MTableColumn tag="td" textAlign="center" className="cuser-pointer" v-if="$state.lock !== enumH.enumLock.notAllowLock">
-          <i class="fas fa-lock-open" v-if="row.IsActive || row.IsActive === undefined" @click="lockUpRow(row)"></i>
+        <MTableColumn
+          tag="td"
+          textAlign="center"
+          className="cuser-pointer"
+          v-if="$state.lock !== enumH.enumLock.notAllowLock"
+        >
+          <i
+            class="fas fa-lock-open"
+            v-if="row.IsActive || row.IsActive === undefined"
+            @click="lockUpRow(row)"
+          ></i>
           <i class="fas fa-lock" v-else @click="lockUpRow(row)"></i>
         </MTableColumn>
-        <MTableColumn v-for="(column, index) in columns" :key="index" :textAlign="column.textAlign" 
-        @dblclick="row.IsActive && updateRows(row[`${tableName}Id`])" :className="row.IsActive  == false ? 'locked-row' : ''"
+        <MTableColumn
+          v-for="(column, index) in columns"
+          :key="index"
+          :textAlign="column.textAlign"
+          @dblclick="row.IsActive && updateRows(row[`${tableName}Id`])"
+          :className="row.IsActive == false ? 'locked-row' : ''"
         >
-        {{
-          formatColumn(column,row[column.name])
-        }}
-        </MTableColumn>  
-        <MTableColumn className="col-fixed-right col-center" v-if="$state.mode !== enumH.enumMode.view" >
-          <div
-            class="m__e-table-col-function-btn"
-            ref="btnFunctionMenu"
-          >
-            <span @click.prevent="row.IsActive && actionRow(row)">{{this.$state.level ? "Thêm" : "Sửa"}}</span>
+          <status-order v-model="row[column.name]" :orderId="row.OrderId" propValue="Status" propName="Title" v-if="column.type == 'StatusOrder'" />
+          <div :class="addClass(column.type,row[column.name])" v-else>
+            {{ formatColumn(column, row[column.name]) }}
+          </div>
+        </MTableColumn>
+        <MTableColumn
+          className="col-fixed-right col-center"
+          v-if="isShowColumnAction"
+        >
+          <div class="m__e-table-col-function-btn" ref="btnFunctionMenu">
+            <span @click.prevent="actionRow(row)">{{
+              getActionTile
+            }}</span>
             <div
+            v-if="$state.nameTable != 'Order'"
               class="m__e-table-col-icon"
               v-click-outside="clickOutSideFunction"
               ref="btnFunction"
               :class="
                 id === row[`${tableName}Id`] && isShowfunction ? 'active' : ''
               "
-              @click="row.IsActive && showFunctionId($event, row[`${tableName}Id`])"
+              @click="
+                row.IsActive && showFunctionId($event, row[`${tableName}Id`])
+              "
             >
-              <div class="icon-drop-page-blue"></div>
+              <div
+                class="icon-drop-page-blue"
+                v-if="this.$state.mode !== enumH.enumMode.view"
+              ></div>
             </div>
           </div>
         </MTableColumn>
@@ -97,7 +139,11 @@
     </div>
   </div>
   <!-- Pop-up thông báo khi xóa -->
-  <MPopUpWarn :isShow="isPopUpDelete" @close-pop-up="isPopUpDelete = false" width="450px">
+  <MPopUpWarn
+    :isShow="isPopUpDelete"
+    @close-pop-up="isPopUpDelete = false"
+    width="450px"
+  >
     {{ `Bạn có thực sự muốn xóa không ?` }}
     <template #footer>
       <div class="warning__delete-btn">
@@ -119,6 +165,7 @@ import MPopUpWarn from "../pop-up/MPopUpWarn.vue";
 import MTableColumn from "../table-column/MTableColumn.vue";
 import enumH from "@/assets/js/enum";
 import baseApi from "@/api/baseApi";
+import StatusOrder from '../order/StatusOrder.vue';
 export default {
   name: "MTable",
   emits:["update:modelValue","delete"],
@@ -127,6 +174,7 @@ export default {
     MButton,
     MTableColumn,
     MCheckBox,
+    StatusOrder
   },
   props: {
     columns: Object,
@@ -149,7 +197,36 @@ export default {
       enumH:enumH
     };
   },
+  computed: {
+    getActionTile() {
+      if (this.$state.nameTable == "Product") {
+        return "Thêm";
+      } else if (this.$state.nameTable == "Order") {
+        return "Xem chi tiết";
+      } else {
+        return "Sửa";
+      }
+    },
+    isShowColumnAction() {
+      // if (
+      //   this.$state.mode !== enumH.enumMode.view &&
+      //   this.$state.tableName != "Order"
+      // ) {
+      //   return false;
+      // }
+      return this.$state.mode !== enumH.enumMode.view;
+    },
+    
+  },
   methods: {
+    addClass(type,value){
+      // eslint-disable-next-line no-debugger
+      debugger
+      if(type == 'paid-type'){
+        return value != 0 ? 'paid' : 'unpaid' ;
+      }
+      return '';
+    },
     /**
      * Hiển thị list chức năng của 1 dòng
      
@@ -188,7 +265,7 @@ export default {
      * Hàm xử lý checkbox
      
      */
-    checkboxSelected(isChecked, id) {
+     checkboxSelected(isChecked, id) {
       try {
         // Check all
         if (id === "check-all") {
@@ -203,7 +280,9 @@ export default {
           } else {
             // Kiểm tra khi check all
             this.rowsSelected = this.rowsSelected.concat(
-              this.rows.map((x) => x[`${this.tableName}Id`]).filter((x) => !this.rowsSelected.includes(x))
+              this.rows
+                .map((x) => x[`${this.tableName}Id`])
+                .filter((x) => !this.rowsSelected.includes(x))
             );
             this.checkedAll = true;
           }
@@ -254,33 +333,39 @@ export default {
      * Hiển thị pop-up xác nhận xóa
      
      */
-    deleteRow(){
+    deleteRow() {
       this.isPopUpDelete = false;
-      this.$emit("delete",[this.id]);
-
+      this.$emit("delete", [this.id]);
     },
-    updateRows(id){
+    updateRows(id) {
       this.$state.idModel = id;
       this.$state.isShowForm = true;
     },
-    actionRow(row){
-      if(this.$state.form == enumH.formName.product){
-        localStorage.setItem("parentName",row?.ProductName);
-        this.$router.push("/products/"+row.ProductId);
-      }else{
+    actionRow(row) {
+      if (this.$state.form == enumH.formName.product) {
+        localStorage.setItem("parentName", row?.ProductName);
+        this.$router.push("/products/" + row.ProductId);
+      }
+      else if (this.$state.form == enumH.formName.order) {
+        this.$router.push("/orderdetails/" + row?.OrderId);
+      } else {
         this.updateRows(row[`${this.$state.tableName}Id`]);
       }
     },
-    formatColumn(column,value){
-      if(column.type == 'date'){
+    formatColumn(column, value) {
+      if (column.type == "date") {
         return common.formatDate(value);
+      } else if (column.type == "Price") {
+        return this.$state.formatPrice(value);
+      } else if (column.type == "StatusOrder") {
+        return this.getTitleStatusOrder(value);
       }
-      if(column.type == 'price'){
-        return common.formatPrice(value);
+      else if (column.type == "paid-type") {
+        return this.getTitlePaid(value);
       }
       return value;
     },
-    async lockUpRow(row){
+    async lockUpRow(row) {
       try {
         this.$state.isMask();
         const api = new baseApi(this.$state.tableName);
@@ -290,16 +375,26 @@ export default {
       } catch (error) {
         this.$state.unMask();
       }
+    },
+    getTitleStatusOrder(status) {
+      return common.getTitleStatusOrder(status);
+    },
+    getTitlePaid(paid){
+      if(paid){
+        return "Đã thanh toán"
+      }else{
+        return "Chưa thanh toán"
+      }
     }
   },
-  watch:{
-    modelValue : function(){
-      if(this.modelValue.length == 0){
+  watch: {
+    modelValue: function () {
+      if (this.modelValue.length == 0) {
         this.rowsSelected = [];
         this.checkedAll = false;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 

@@ -62,15 +62,13 @@ export default {
   methods: {
     async registerSubmit() {
       try {
-        // eslint-disable-next-line no-debugger
-        debugger
         if (!this.checkValidateFormSubmit()) {
           return;
         }
         this.$state.isMask();
         const res = await new authApi().signin(this.modelSignin);
         if (!res.ErrorCode) {
-          localStorage.setItem("token", res.Data.Token);
+          localStorage.setItem("token_admin", res.Data.Token);
           this.$state.setUser(res.Data.Admin);
           this.$router.push("/");
         }
@@ -138,7 +136,7 @@ export default {
   content: "";
   width: 20%;
   height: 2px;
-  background-color: rgb(124, 247, 43);
+  background-color: rgb(247, 199, 43);
   bottom: 0;
   left: 50%;
   transform: translateX(-50%);

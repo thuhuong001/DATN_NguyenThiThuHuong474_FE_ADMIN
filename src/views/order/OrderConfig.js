@@ -1,9 +1,12 @@
 import enumH from "@/assets/js/enum";
 class orderConfig {
     constructor() {
-        this.tableName = 'OrderDetail';
+        this.tableName = 'Order';
         this.titleForm = "Đơn hàng";
-        this.formName = enumH.formName.orderdetail;
+        this.formName = enumH.formName.order;
+        this.lock = enumH.enumLock.notAllowLock;
+        this.delete = enumH.enumDelete.notAllowDelete;
+        // this.mode = enumH.enumMode.view;        
         this.level = 1;
         this.columns = [
             {
@@ -14,59 +17,54 @@ class orderConfig {
                 width : 150,
             },
             {
-                name : "ProductName",
-                title : "Tên sản phẩm",
+                name : "FullName",
+                title : "Tên khách hàng",
                 textAlign : "left",
                 type : "text",
                 width : 150,
             },
             {
-                name : "Sold",
-                title : "Đã bán",
+                name : "TotalAmount",
+                title : "Số lượng",
                 textAlign : "right",
                 type   : "number",
                 width : 150,
             },
             {
-                name : "Quantity",
-                title : "Lượng có",
-                textAlign : "center",
-                type : "number",
+                name : "TotalPrice",
+                title : "Tổng tiền",
+                textAlign : "right",
+                type : "Price",
                 width : 150,
             },
             {
-                name : "PriceSale",
-                title : "Giá bán",
+                name : "IsPaid",
+                title : "Trạng thái thanh toán",
                 textAlign : "center",
-                type : "number",
+                type : "paid-type",
+                width : 150,
+                class : "paid"
+            },
+            {
+                //Cột các button
+                name : "Status",
+                title : "Trạng thái đơn hàng",
+                textAlign : "center",
+                type : "StatusOrder",
                 width : 150,
             },
             {
-                name : "Discount",
-                title : "% giảm giá",
-                textAlign : "center",
-                type : "number",
-                width : 150,
-            },
-            {
-                name : "PublicDate",
-                title : "Ngày ra mắt",
+                name : "CreatedAt",
+                title : "Ngày tạo",
                 textAlign : "center",
                 type : "date",
                 width : 150,
             },
             {
-                name : "TypeName",
-                title : "Thể loại",
-                textAlign : "left",
-                type : "text",
-                width : 150,
-            },
-            {
-                name : "BrandName",
-                title : "Thương hiệu",
-                textAlign : "left",
-                type : "text",
+                name : "ModifiedAt",
+                title : "Ngày cập nhật",
+                textAlign : "center",
+                type : "date",
                 width : 150,
             },
         ];

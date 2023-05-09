@@ -29,6 +29,24 @@ const common = {
       return "";
     }
   },
+  getTitleStatusOrder(status) {
+    switch (status) {
+      case enumH.enumStatusOrder.ChoXacNhan:
+        return "Chờ xác nhận";
+      case enumH.enumStatusOrder.ChoLayHang:
+        return "Chờ lấy hàng";
+      case enumH.enumStatusOrder.DangGiao:
+        return "Đang giao";
+      case enumH.enumStatusOrder.DaNhanHang:
+        return "Đã nhận hàng";
+      case enumH.enumStatusOrder.HoanThanh:
+        return "Hoàn thành";
+      case enumH.enumStatusOrder.DaHuy:
+        return "Đã hủy";
+      case enumH.enumStatusOrder.TraHang:
+        return "Trả hàng";
+    }
+  },
   formatPrice(price){
     if(!price) return '';
       return  new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);

@@ -36,20 +36,24 @@ const state = reactive({
   },
   setUser(user) {
     // const encodedUser = window.btoa(JSON.stringify(user));
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem("user_admin", JSON.stringify(user));
     this.user = user;
+  },
+  formatPrice(price){
+    if(!price) return '';
+      return  new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(price);
   },
   getUser() {
     try {
-      const encodedUser = localStorage.getItem("user");
+      const encodedUser = localStorage.getItem("user_admin");
       if (encodedUser) {
         const user = JSON.parse(encodedUser);
         this.user = user;
       } else {
-        localStorage.removeItem("token");
+        localStorage.removeItem("token_admin");
       }
     } catch (error) {
-      localStorage.removeItem("token");
+      localStorage.removeItem("token_admin");
     }
   },
   isMask(){
