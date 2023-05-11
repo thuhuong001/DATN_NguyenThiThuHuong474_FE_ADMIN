@@ -72,6 +72,12 @@ const enumH = {
     // Không cho phép xoas
     notAllowDelete : 0,
   },
+  enumAdd : {
+    // Cho phép xoas
+    allowAdd: 1,
+    // Không cho phép xoas
+    notAllowAdd : 0,
+  },
   /**
    * List key code
    */

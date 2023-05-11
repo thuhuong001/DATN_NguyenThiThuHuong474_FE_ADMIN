@@ -6,6 +6,7 @@ class orderConfig {
         this.formName = enumH.formName.order;
         this.lock = enumH.enumLock.notAllowLock;
         this.delete = enumH.enumDelete.notAllowDelete;
+        this.adddd = enumH.enumAdd.notAllowAdd;
         // this.mode = enumH.enumMode.view;        
         this.level = 1;
         this.columns = [
