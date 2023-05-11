@@ -54,7 +54,7 @@ class supplyConfig {
                 name : "PriceSupply",
                 title : "Giá nhập",
                 textAlign : "right",
-                type : "price",
+                type : "Price",
                 width : 100,
             },
             {

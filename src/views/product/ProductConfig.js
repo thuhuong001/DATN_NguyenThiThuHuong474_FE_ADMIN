@@ -38,7 +38,7 @@ class productConfig {
                 name : "PriceSale",
                 title : "Giá bán",
                 textAlign : "right",
-                type : "price",
+                type : "Price",
                 width : 100,
             },
             {

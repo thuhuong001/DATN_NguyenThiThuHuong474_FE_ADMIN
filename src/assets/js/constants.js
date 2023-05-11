@@ -10,7 +10,7 @@ const constants = {
       name:"Home"
     },
     {
-      text: "Quản lý Sản phẩm",
+      text: "Quản lý sản phẩm",
       classIcon: "icon-product",
       path : "/products",
       name:"Product"

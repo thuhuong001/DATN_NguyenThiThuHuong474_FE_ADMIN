@@ -157,8 +157,8 @@ const enumH = {
     TraHang : 7
   },
   paymentMethod :{
-    TTKLH : 1 , // thanh toán khi lấy hàng,
-    ONLINE : 2, //Thẻ ATM 
+    ONLINE : 1 , 
+    OFFLINE : 0, 
   },
 };
 export default enumH;

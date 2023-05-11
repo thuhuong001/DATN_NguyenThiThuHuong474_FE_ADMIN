@@ -17,7 +17,7 @@ class orderConfig {
                 width : 150,
             },
             {
-                name : "FullName",
+                name : "Receiver",
                 title : "Tên khách hàng",
                 textAlign : "left",
                 type : "text",

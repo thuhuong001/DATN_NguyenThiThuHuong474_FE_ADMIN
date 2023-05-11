@@ -14,12 +14,10 @@
         <h3 class="item--title">
           {{item.ProductName}}
         </h3>
-        <div class="item--variant"><span>{{item.ColorName}} / {{item.SizeCode}}</span></div>
-        <div class="item-price">
-          <p>
-            <span>{{ $state.formatPrice(item.PriceDel) }}</span>
-            <sup v-if="item.Discount">{{ $state.formatPrice(item.PriceDel + (item.Discount*0.01*item.PriceDel)) }}</sup>
-          </p>
+        <div class="item--variant"><span>{{item.ColorName}} / {{item.SizeNumber}}</span></div>
+        <div class="proloop-price">
+            <div class="price-del">{{ $state.formatPrice(item.PriceDel) }}</div>
+            <div class="price">{{ $state.formatPrice(item.PriceSale) }}</div>
         </div>
       </div>
     </div>
@@ -102,21 +100,32 @@ export default {
 .item-price p {
   margin: 0 0 10px;
 }
-
-.item-price span {
-  font-weight: 600;
-  color: #8f9bb3;
+.proloop-price{
+    display: flex;
+    margin: 10px 0;
 }
-.item-price sup {
-  color: #f31612;
-  font-size: 80%;
-  margin-left: 8px;
-  text-decoration:line-through;
+
+.price{
+    
+    color: #797272;
+    text-decoration: line-through;
+    font-weight: 300;
+    font-size: 15px;
+    margin-left: 4px;
+}
+.price-del{
+    margin-right: 4px;
+    color: #c92027;
+    font-weight: bold;
+    font-size: 17px;
 }
 .media-total {
   text-align: righ;
   display: flex;
   align-items: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #c92027;
 }
 .line-item-total {
   font-size: 15px;

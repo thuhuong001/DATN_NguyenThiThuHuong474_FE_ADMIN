@@ -30,7 +30,7 @@ class shipmentConfig {
                 name : "PriceShip",
                 title : "Phí ship",
                 textAlign : "right",
-                type : "price",
+                type : "Price",
                 width : 100,
             },
             {

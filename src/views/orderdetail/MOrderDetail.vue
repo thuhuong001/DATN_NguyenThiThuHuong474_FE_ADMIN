@@ -2,7 +2,10 @@
   <div class="order-item-detail">
     <div class="order-item-detail-header">
       <div class="header-prev" @click="$router.push('/orders')">TRỞ LẠI </div>
-      <div class="header-info"><span>{{order.OrderCode}}</span> | {{getTitleStatusOrder(order.Status)}}</div>
+      <div class="header-info">
+        <b>{{order.OrderCode}}</b> |
+        <span>{{ getTitleStatusOrder(order.Status) }}</span>
+      </div>
     </div>
     <div class="paid">{{getStatusPaid(order.IsPaid)}}</div> 
     <ul class="progressbar">
@@ -148,10 +151,10 @@ export default {
     },
     getPaymentMethod(paymentMethod){
       switch (paymentMethod) {
-        case enumH.paymentMethod.TTKLH:
-          return 'Thanh toán khi nhận hàng';
         case enumH.paymentMethod.ONLINE:
           return 'Thanh toán trực tuyến';
+        case enumH.paymentMethod.OFFLINE:
+          return 'Thanh toán khi nhận hàng';
         default:
           break;
       }
@@ -216,8 +219,9 @@ export default {
 .header-prev{
     cursor: pointer;
 }
-.header-info span{
-  font-size: 16px;
+.header-info span {
+  font-size: 15px;
+  color: red;
   font-weight: bold;
 }
 .order-item-detail-header{
