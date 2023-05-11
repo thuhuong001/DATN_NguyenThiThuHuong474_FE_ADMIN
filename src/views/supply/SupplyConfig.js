@@ -20,7 +20,7 @@ class supplyConfig {
                 title : "Tên sản phẩm",
                 textAlign : "left",
                 type : "text",
-                width : 300,
+                width : 500,
             },
             {
                 name : "SizeNumber",

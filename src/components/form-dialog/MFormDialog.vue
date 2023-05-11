@@ -181,8 +181,6 @@ export default {
      * Hàm validate form true : không lỗi
      */
     checkValidateFormSubmit() {
-      // eslint-disable-next-line no-debugger
-      debugger
       for (const property in this.$refs[this.$state.nameTable].$refs) {
         this.$refs[this.$state.nameTable].$refs[property]?.checkValidate();
       }
@@ -200,7 +198,8 @@ export default {
       this.model = {};
     },
 
-    async insertOrUpdateCustom(id) {
+    async insertOrUpdateCustom(item) {
+      
       try {
         if (this.$state.form == this.formNameEnum.product) {
           let formData = new FormData();
@@ -215,7 +214,7 @@ export default {
             formData.append("Images[]", this.FileModel.images[index].ImageId);
           }
 
-          formData.append("ObjectId", id);
+          formData.append("ObjectId", item.ProductId);
           const api = new fileApi();
           await api.insertImages(formData);
           this.model.Images = null;

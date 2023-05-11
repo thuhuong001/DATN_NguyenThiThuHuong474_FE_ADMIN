@@ -15,7 +15,7 @@
 
       <MInput
         textField="Tên phương thức"
-        v-model="formData.Method"
+        v-model="formData.ShipmentName"
         :required="true"
         name="Method"
         ref="Method"

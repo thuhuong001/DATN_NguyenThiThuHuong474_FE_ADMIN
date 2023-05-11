@@ -36,7 +36,7 @@
           @mousedown="itemSelected(item, index)"
         >
           <div style="display: flex">
-            <div class="m-combobox-item-name">{{ item[propName] }}</div>
+            <div class="m-combobox-item-name" v-if="!isPaid || ( isPaid && item[propValue] != 6)">{{ item[propName] }}</div>
           </div>
         </li>
       </div>
@@ -83,6 +83,7 @@ export default {
       default: "icon-drop",
     },
     orderId: String,
+    isPaid : Boolean
   },
   data() {
     return {

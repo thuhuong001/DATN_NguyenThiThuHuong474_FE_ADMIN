@@ -55,11 +55,13 @@
     <div class="order-item-detail-info">
       <div class="info-address">
         <h5>Địa Chỉ Nhận Hàng</h5>
-        <h6>{{order.Receiver}}</h6>
-        <div>{{order.Phone}}</div>
+        <h6>{{ order.Receiver }}</h6>
+        <div><b>{{order.Phone}}</b></div>
         <div>
-          {{order.AddressDetail}}
+          {{ order.AddressDetail }}
         </div>
+          <h5>Ghi chú:</h5>
+          <div>{{ order.Note }}</div>
       </div>
       <div class="info-product">
         <cart-item-checkout v-for="orderDetail,index in order.OrderDetails" :key="index" :item="orderDetail" />
